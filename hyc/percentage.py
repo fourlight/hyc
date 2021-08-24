@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+from hyc.fraction import *
+
+>>>>>>> fe1a949 (hyc库4.0.0α3版本)
 
 # 百分数类
 class Percentage:
@@ -36,3 +41,13 @@ class Percentage:
     # 百分数读作
     def __repr__(self):
         return f'{self.numerator}%'
+<<<<<<< HEAD
+=======
+
+
+# 分数化百分数
+def fr2percentage(covert_num: Fraction):
+    denominator, numerator = covert_num.fraction
+    numerator *= 100 / denominator
+    return Percentage(numerator)
+>>>>>>> fe1a949 (hyc库4.0.0α3版本)
