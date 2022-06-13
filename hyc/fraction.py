@@ -1,4 +1,5 @@
 from hyc.num import *
+from hyc.percentage import *
 
 
 # 分数类
@@ -97,11 +98,7 @@ class Fraction:
     # 分数加整数（小数）
     def __add__(self, other):
         if type(other) == int or type(other) == float:
-<<<<<<< HEAD
-            other = covert(other)
-=======
-            other = int2fr(other)
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+            other = covert(other, Fraction)
         result = 0
         fraction_list = den_di([self, other])
         for i in fraction_list:
@@ -112,11 +109,7 @@ class Fraction:
     # 分数减整数（小数）
     def __sub__(self, other):
         if type(other) == int or type(other) == float:
-<<<<<<< HEAD
-            other = covert(other)
-=======
-            other = int2fr(other)
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+            other = covert(other, Fraction)
         minuend, subtracted = den_di([self, other])
         minuend.fraction[1] -= subtracted.fraction[1]
         return minuend.red_fr()
@@ -124,33 +117,19 @@ class Fraction:
     # 分数乘整数（小数）
     def __mul__(self, other):
         if type(other) == int or type(other) == float:
-<<<<<<< HEAD
-            other = covert(other)
-        deno = 1
-        mole = 1
-        for i in [self.fraction, other.fraction]:
-            deno *= i[0]
-            mole *= i[1]
-        result = Fraction(deno, mole)
-=======
-            other = int2fr(other)
+            other = covert(other, Fraction)
         denominator = 1
         numerator = 1
         for i in [self.fraction, other.fraction]:
             denominator *= i[0]
             numerator *= i[1]
         result = Fraction(denominator, numerator)
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
         return result.red_fr()
 
     # 分数除整数（小数）
     def __truediv__(self, other):
         if type(other) == int or type(other) == float:
-<<<<<<< HEAD
-            other = covert(other)
-=======
-            other = int2fr(other)
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+            other = covert(other, Fraction)
         result = self * other.opposide()
         return result.red_fr()
 
@@ -169,38 +148,22 @@ class Fraction:
     # 分数运算（当分数为右操作数时）（不包括平方）
     # 整数（小数）加分数
     def __radd__(self, other):
-<<<<<<< HEAD
-        result = covert(other) + self
-=======
-        result = int2fr(other) + self
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+        result = covert(other, Fraction) + self
         return int(result)
 
     # 整数（小数）减分数
     def __rsub__(self, other):
-<<<<<<< HEAD
-        result = covert(other) - self
-=======
-        result = int2fr(other) - self
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+        result = covert(other, Fraction) - self
         return int(result)
 
     # 整数（小数）乘分数
     def __rmul__(self, other):
-<<<<<<< HEAD
-        result = covert(other) * self
-=======
-        result = int2fr(other) * self
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+        result = covert(other, Fraction) * self
         return int(result)
 
     # 整数（小数）除分数
     def __rtruediv__(self, other):
-<<<<<<< HEAD
-        result = covert(other) / self
-=======
-        result = int2fr(other) / self
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
+        result = covert(other, Fraction) / self
         return int(result)
 
     # 整数（小数）整除分数
@@ -211,15 +174,6 @@ class Fraction:
 
 # 通分
 def den_di(fraction_list: list[Fraction]):
-<<<<<<< HEAD
-    all_deno = []
-    for i in fraction_list:
-        all_deno.append(i.fraction[0])
-    common_deno = lcm(all_deno)
-    new_fraction_list = []
-    for i in fraction_list:
-        common_mul = int(common_deno / i.fraction[0])
-=======
     all_denominator = []
     for i in fraction_list:
         all_denominator.append(i.fraction[0])
@@ -227,26 +181,6 @@ def den_di(fraction_list: list[Fraction]):
     new_fraction_list = []
     for i in fraction_list:
         common_mul = int(common_denominator / i.fraction[0])
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
         i = Fraction(i.fraction[0] * common_mul, i.fraction[1] * common_mul)
         new_fraction_list.append(i)
     return new_fraction_list
-
-
-# 整数（小数）化分数
-<<<<<<< HEAD
-def covert(covert_num: float):
-=======
-def int2fr(covert_num: float):
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
-    covert_num = float(covert_num)
-    num, decimal = str(covert_num).split('.')
-    if covert_num < 1:
-        frac = Fraction(10 ** len(decimal), int(decimal))
-    else:
-        frac = Fraction(10 ** len(decimal), int(decimal) + int(num) * 10 ** len(decimal))
-<<<<<<< HEAD
-    return frac.red_fr()
-=======
-    return frac.red_fr()
->>>>>>> fe1a949 (hyc库4.0.0α3版本)
